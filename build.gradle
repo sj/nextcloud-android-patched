@@ -238,17 +238,5 @@ tasks.withType(Test) {
     }
 }
 
-task makeSureRepositoriesCfgExists(type: Exec) {
-    def homeDir = System.properties['user.home']
-    println homeDir
-    commandLine 'touch', homeDir + '/.android/repositories.cfg'
-}
-
-afterEvaluate {
-    android.applicationVariants.all { variant ->
-        variant.javaCompiler.dependsOn(makeSureRepositoriesCfgExists)
-    }
-}
-
 // uncomment for gplay, modified (must be at the bottom)
 //apply plugin: 'com.google.gms.google-services'
